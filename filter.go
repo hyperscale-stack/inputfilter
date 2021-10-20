@@ -12,13 +12,13 @@ import (
 	"github.com/hyperscale-stack/validator"
 )
 
-// InputDefinition struct
+// InputDefinition struct.
 type InputDefinition struct {
 	Filters    []filter.Filter
 	Validators []validator.Validator
 }
 
-// InputFilter interface
+// InputFilter interface.
 type InputFilter interface {
 	FilterMap(input map[string]interface{}) (map[string]interface{}, map[string][]error)
 	FilterValues(values url.Values) (url.Values, map[string][]error)
@@ -29,7 +29,7 @@ type inputFilter struct {
 	validators map[string][]validator.Validator
 }
 
-// New input filter
+// New input filter.
 func New(definitions map[string]InputDefinition) InputFilter {
 	f := &inputFilter{
 		filters:    make(map[string][]filter.Filter),
@@ -72,7 +72,9 @@ func (f inputFilter) filterField(key string, value interface{}) (interface{}, er
 	}
 
 	val := value
+
 	var err error
+
 	for _, filter := range filters {
 		val, err = filter.Filter(val)
 		if err != nil {
