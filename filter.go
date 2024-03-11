@@ -78,7 +78,7 @@ func (f inputFilter) filterField(key string, value interface{}) (interface{}, er
 	for _, filter := range filters {
 		val, err = filter.Filter(val)
 		if err != nil {
-			return val, err
+			return val, fmt.Errorf("filter error: %w", err)
 		}
 	}
 
@@ -141,7 +141,7 @@ func (f inputFilter) filterFieldValues(key string, values []interface{}) ([]inte
 		for _, filter := range filters {
 			val, err = filter.Filter(val)
 			if err != nil {
-				return retvals, err
+				return retvals, fmt.Errorf("filter error: %w", err)
 			}
 
 			retvals[i] = val
