@@ -83,9 +83,9 @@ jobs:
             }
 
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v4
+        uses: golangci/golangci-lint-action@v6
         with:
-          version: v1.55.2
+          version: v1.62.2
           skip-cache: true
 
       - name: Coveralls
